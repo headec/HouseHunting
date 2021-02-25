@@ -1,0 +1,32 @@
+<% if @user.errors.any? %> <!-- if any errors, display them here //-->
+    <div id="error_explanation">
+        <h2>
+            <%= pluralize(@user.errors.count, "error") %> prohibited
+            this data from being saved:
+        </h2>
+        <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<!-- area below is for the form elements/fields //-->
+<%= form_for @user, :url => makeAdmin_update_user_path(@user) do |f| %>
+    <div class="field">
+        <p>
+            <!--
+            How I got this working: http://stackoverflow.com/questions/20379311/how-to-get-blank-checkboxes-to-pass-as-false-to-params 
+            this explains the below. Basic idea, you need to use a hidden field tag fore whatever reason otherwise password ended up blank
+            //-->
+            <%= f.label :admin %>
+            <%= hidden_field_tag :admin, false %>
+            <%= check_box_tag :admin, checked = true, unchecked = false %>
+        </p>
+    </div>
+    <div>
+        <%= f.submit "Submit", class: "btn-primary" %> 
+        <%= link_to "Back", users_path, class: "btn-primary" %>
+    </div>
+<% end %>

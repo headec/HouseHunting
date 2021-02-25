@@ -1,0 +1,27 @@
+<div style="background-color:white">
+    <h1>School Information</h1>
+    <p>
+        <strong>Name:</strong>
+        <%= @school.name %>
+    </p>
+ 
+    <p>
+        <strong>Address:</strong>
+        <%= @school.address %>
+    </p>
+
+    <p>
+        <strong>Latitude:</strong>
+        <%= @school.lat %>
+    </p>
+
+    <p>
+        <strong>Longitude:</strong>
+        <%= @school.long %>
+    </p>
+    
+    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@school.lat}%2C#{@school.long}" %><br /><br /> <!-- show the location of the school on a map //-->
+</div>
+
+<%= link_to 'Edit', edit_school_path(@school), class: "btn-primary" %>
+<%= link_to 'Back', schools_path, class: "btn-primary" %>
